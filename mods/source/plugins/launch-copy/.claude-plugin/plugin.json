@@ -1,0 +1,14 @@
+{
+  "name": "launch-copy",
+  "version": "0.2.2",
+  "author": { "name": "open-close-mods" },
+  "description": "When a LAUNCH.md is written or edited, copies the fenced block under its \"## 1. Pickup\" heading to the clipboard at the end of the turn and says so, so starting a launch in a fresh chat is: new chat, paste, Enter. It reads the launch lane from the brief's Stamp section: for lane L1 or L3c (this chat starts the builder itself) it copies nothing and says there is nothing to paste; for L2 it copies the /compact line for this chat. It only watches: it never approves, asks, denies or rewrites a tool call, and never types into the prompt box.",
+  "userConfig": {
+    "mode": {
+      "type": "string",
+      "title": "Launch copy mode",
+      "description": "Type exactly one of: copy (default): copy the Pickup block to the clipboard and notify. notify: only a notification naming the file, nothing is copied. off: nothing at all. Any other value counts as off (no picker on purpose: a picker would turn a typo into the default, copy).",
+      "default": "copy"
+    }
+  }
+}

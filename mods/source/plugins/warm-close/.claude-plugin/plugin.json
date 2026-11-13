@@ -1,0 +1,45 @@
+{
+  "name": "warm-close",
+  "version": "0.2.0",
+  "author": { "name": "open-close-mods" },
+  "description": "Runs /close conversation --checkpoint shortly before the prompt cache lapses on an idle conversation, so the insights are harvested at a cache read (about 0.1x) instead of a cold re-read (1x plus a 1.25-2x re-cache). Needs at least minTurns of your own turns since the last close; capped per session per day. Submits a slash command by default; mode notify only notifies, mode off does nothing.",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "mode": {
+      "type": "string",
+      "title": "Warm close mode",
+      "description": "Type exactly one of: submit (default): shortly before the cache lapses, notify and run /close conversation --checkpoint. notify: only the notification, nothing is run. off: nothing. Any other value counts as off (no picker on purpose: a picker would turn a typo into the default, submit).",
+      "default": "submit"
+    },
+    "ttlMinutes": {
+      "type": "number",
+      "title": "Prompt-cache TTL (minutes)",
+      "description": "Set this to your account's actual prompt-cache lifetime in minutes. The default assumes 60; some plans, and usage overage, run 5. The close fires at ttlMinutes minus marginMinutes after the last turn.",
+      "default": 60
+    },
+    "marginMinutes": {
+      "type": "number",
+      "title": "Margin before the TTL (minutes)",
+      "description": "Fire this many minutes before the cache lapses. Clamped to 1 through ttlMinutes minus 1.",
+      "default": 8
+    },
+    "minTurns": {
+      "type": "number",
+      "title": "Minimum turns of yours",
+      "description": "Turns you typed since the last close that are needed before an idle close fires (at least 1).",
+      "default": 3
+    },
+    "maxPerDay": {
+      "type": "number",
+      "title": "Closes per session per day",
+      "description": "The most automatic closes (or notifications) one session gets per local day. 0 means none.",
+      "default": 6
+    },
+    "childHoldMinutes": {
+      "type": "number",
+      "title": "Hold while a child session runs (minutes)",
+      "description": "After this conversation starts a child session (start_session that really starts one) or messages one (SendMessage to a local_ id), the idle close is held for this many minutes or until the child reports; typing does not end the hold. 0 turns the hold off; clamped to 0 through 1440. A value shorter than ttlMinutes minus marginMinutes expires before the close would fire, so it is effectively off.",
+      "default": 120
+    }
+  }
+}

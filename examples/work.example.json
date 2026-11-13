@@ -1,0 +1,9 @@
+{
+  "activeRun": {
+    "task": "Trial onboarding email sequence",
+    "phase": "execute",
+    "contract": "~/work/20260115-140000_onboarding--trial-emails/CONTRACT.md",
+    "started": "2026-01-15T14:00:00Z",
+    "updatedAt": "2026-01-15T17:40:00Z"
+  }
+}

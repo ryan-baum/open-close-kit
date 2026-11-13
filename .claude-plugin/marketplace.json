@@ -1,0 +1,21 @@
+{
+  "name": "open-close-mods",
+  "owner": {
+    "name": "open-close kit"
+  },
+  "metadata": {
+    "description": "Two optional mods for the /open and /close skills: warm-close (close an idle conversation while its prompt cache is warm) and launch-copy (copy a launch brief's pickup to the clipboard)."
+  },
+  "plugins": [
+    {
+      "name": "warm-close",
+      "source": "./mods/source/plugins/warm-close",
+      "description": "Runs /close conversation --checkpoint shortly before the prompt cache lapses on an idle conversation (on by default), so insights are harvested at a cache read instead of a cold re-read. Needs 3 turns of yours since the last close, capped per session per day; holds while a child session it started is running; mode notify only notifies, mode off does nothing."
+    },
+    {
+      "name": "launch-copy",
+      "source": "./mods/source/plugins/launch-copy",
+      "description": "When a LAUNCH.md is written or edited, copies the fenced block under its \"## 1. Pickup\" heading to the clipboard at the end of the turn and says so, so starting a launch in a fresh chat is: new chat, paste, Enter. It reads the launch lane from the brief's Stamp section: for lane L1 or L3c (this chat starts the builder itself) it copies nothing and says there is nothing to paste; for L2 it copies the /compact line for this chat. It only watches: it never approves, asks, denies or rewrites a tool call, and never types into the prompt box."
+    }
+  ]
+}
