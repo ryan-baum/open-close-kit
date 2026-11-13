@@ -13,6 +13,7 @@ Adapted from the author's own Claude Code setup, with every private detail gener
 | `skills/open/SKILL.md`, `skills/close/SKILL.md` | the two routers: route table, aliases, bare menu, guards |
 | `skills/open/References/<route>.md` | one pack per route (15), each with `## OPEN`, `## CLOSE`, `## BRIDGE`, `## GATES`, `## GOTCHAS` |
 | `skills/open/References/_catechism-base.md` | the shared close checklist (4 items) and the **Learning Router** table |
+| `skills/open/References/_knowledge.md` (+ `_knowledge-index.seed.md`) | the knowledge library's note format, its index, and the update-don't-duplicate rule |
 | `skills/open/References/_launch.md` | optional: the LAUNCH.md brief for handing a build to a fresh context |
 | `skills/open/Tools/context-clues.ts` (+ test) | optional helper (needs [bun](https://bun.sh)): ranks the bare `/open` and `/close` menus from time of day, active run and sprint state; fails open |
 | `commands/open.md`, `commands/close.md` | slash-command shims so `/open` and `/close` show once in the picker |
@@ -21,7 +22,8 @@ Adapted from the author's own Claude Code setup, with every private detail gener
 | `mods/NOTES.md` | how two Claude Code mods automate parts of this (an idle auto-close, a LAUNCH.md clipboard copy), with their limits |
 | `mods/source/` | the source of those two mods (optional; if you delete it, delete `.claude-plugin/` too) |
 | `.claude-plugin/marketplace.json` | lists the two mods as a plugin marketplace, so Claude Code can install them from this repo |
-| `install.sh` | copies the skills and commands into `~/.claude` |
+| `install.sh` | copies the skills and commands into `~/.claude` and creates the state dir and knowledge library |
+| `tests/install.test.sh` | checks `install.sh` in throwaway folders (`bash tests/install.test.sh`) |
 | `LICENSE` | MIT |
 
 ## Install (about 10 minutes)
@@ -31,10 +33,11 @@ Adapted from the author's own Claude Code setup, with every private detail gener
    ```bash
    bash install.sh
    ```
-   It copies `skills/open`, `skills/close` and the two commands into `~/.claude`, creates the state dir, and runs the helper's tests if `bun` is installed. It refuses to overwrite an existing `open` or `close` skill unless you pass `--force` (`bash install.sh --force`) (the old copies are moved to `~/.claude/open-close-backups/<time>/`, outside the skills folder, so they never load as a second `/open`).
+   It copies `skills/open`, `skills/close` and the two commands into `~/.claude`, creates the state dir and the knowledge library (below), and runs the helper's tests if `bun` is installed. It refuses to overwrite an existing `open` or `close` skill unless you pass `--force` (`bash install.sh --force`) (the old copies are moved to `~/.claude/open-close-backups/<time>/`, outside the skills folder, so they never load as a second `/open`).
 3. Optional settings (in your shell profile, or `env` in `~/.claude/settings.json`):
    - `OPEN_CLOSE_STATE_DIR`: where bridge files live (default `~/.claude/open-close`).
    - `OPEN_CLOSE_WORK_DIR`: where run folders are created (default `~/work`).
+   - `OPEN_CLOSE_KNOWLEDGE_DIR`: the knowledge library (default `<state dir>/knowledge`). Point it at a notes folder you already keep; set it before running `install.sh`, which adds an `INDEX.md` there and never touches an existing one.
 4. Start a NEW chat (skills load at chat start) and type `/open help`.
 
 Try it: `/open conversation <what you want to do>`, work a little, then `/close conversation`. Read the close report: four base items, a Learning Router inventory, a commit proposal (nothing committed), and a bridge at `~/.claude/open-close/conversation-next.md`. The next `/open conversation` reads that bridge.
@@ -43,6 +46,7 @@ Try it: `/open conversation <what you want to do>`, work a little, then `/close 
 
 - **Run**: a piece of substantive work with its own folder, `${OPEN_CLOSE_WORK_DIR:-~/work}/<YYYYMMDD-HHMMSS_slug>/`, and one **work contract** inside it, `CONTRACT.md` (goal, checkable criteria, `phase:`, decisions, changelog). See `examples/CONTRACT.example.md`. Milestone, project and research routes create one; a conversation close completes it only when every criterion is checked.
 - **Bridge**: the small file a close writes and the next open reads (`conversation-next.md`, `session-next.md`, ...). File state always wins.
+- **Knowledge library**: one folder of notes (methods, findings, playbooks, incidents) plus an `INDEX.md` with one line per note. Closes add or update notes there, checking the index first so one topic stays one note; opens read the index and pull in only the notes that match. It starts empty and fills as you close work. Format: `skills/open/References/_knowledge.md`.
 - **Learning Router**: one table, run once per close, that decides where each learning goes (a knowledge note, `CLAUDE.md`, a skill's Gotchas, ...) or, by default, nowhere. Anything touching identity, doctrine, hooks or permissions is only ever proposed to you.
 - **`--checkpoint`**: `/close conversation --checkpoint` runs the whole close but leaves the run open, for a conversation you will continue.
 - **NMIT**: the next most important thing; every open ends on one.
@@ -51,7 +55,7 @@ Try it: `/open conversation <what you want to do>`, work a little, then `/close 
 
 ## What you will want to adapt
 
-The packs refer to things you may not have yet, always as optional: a project registry (`PROJECTS.md`), a goals file (`GOALS.md`), a knowledge notes folder, a calendar, a meeting recorder, a task app. Each pack degrades when one is missing. `ADAPT.md` lists every simplification and how to wire your own tools back in. Paths in the Learning Router table (`_catechism-base.md`) are suggestions: point them at where you keep notes.
+The packs refer to things you may not have yet, always as optional: a project registry (`PROJECTS.md`), a goals file (`GOALS.md`), a calendar, a meeting recorder, a task app. Each pack degrades when one is missing. `ADAPT.md` lists every simplification and how to wire your own tools back in. Paths in the Learning Router table (`_catechism-base.md`) are suggestions: point them at where you keep notes.
 
 ## Why the skills install by copy, not as a plugin
 

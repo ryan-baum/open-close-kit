@@ -6,6 +6,7 @@
 #                           would show up as a second /open)
 #   CLAUDE_HOME=/some/dir ./install.sh   TESTING ONLY (to install into a scratch folder): the packs name ~/.claude/skills/open/...,
 #                                        so a real install must go to ~/.claude
+#   OPEN_CLOSE_KNOWLEDGE_DIR=~/notes ./install.sh   use a notes folder you already keep as the knowledge library
 # It copies files only. It never installs a mod (see mods/NOTES.md) and never edits settings.
 set -euo pipefail
 
@@ -13,6 +14,8 @@ KIT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DEST="${CLAUDE_HOME:-$HOME/.claude}"
 STATE="${OPEN_CLOSE_STATE_DIR:-$DEST/open-close}"
 STATE="${STATE/#\~/$HOME}"
+KNOW="${OPEN_CLOSE_KNOWLEDGE_DIR:-$STATE/knowledge}"
+KNOW="${KNOW/#\~/$HOME}"
 FORCE=0
 [ "${1:-}" = "--force" ] && FORCE=1
 STAMP="$(date -u +%Y%m%dT%H%M%SZ)"
@@ -34,7 +37,7 @@ if [ "$FORCE" -eq 0 ]; then
   done
 fi
 
-mkdir -p "$DEST/skills" "$DEST/commands" "$STATE"
+mkdir -p "$DEST/skills" "$DEST/commands" "$STATE" "$KNOW/incidents"
 
 for name in open close; do
   target="$DEST/skills/$name"
@@ -64,6 +67,13 @@ for cmd in open close; do
 done
 
 echo "state dir: $STATE"
+# The knowledge library: closes write notes here, opens read its INDEX.md. An existing index is never touched.
+if [ -e "$KNOW/INDEX.md" ]; then
+  echo "knowledge library: $KNOW (existing INDEX.md kept)"
+else
+  cp "$KIT/skills/open/References/_knowledge-index.seed.md" "$KNOW/INDEX.md"
+  echo "knowledge library: $KNOW (new, with an empty INDEX.md)"
+fi
 if command -v bun >/dev/null 2>&1; then
   if (cd "$DEST/skills/open/Tools" && bun test context-clues.test.ts >/dev/null 2>&1); then
     echo "context-clues: tests pass"

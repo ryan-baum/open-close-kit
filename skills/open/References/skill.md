@@ -25,7 +25,7 @@ COUNTERPART: both directions live in this file; bridge below.
 8. [agent][R] Report open outcome as target, delegated workflow order, current blocker if any, and first next move.
 9. [agent][Y] If a work contract exists, link the skill work to its criteria without recreating contract logic inside this pack.
 10. [agent][Y] If repeatable behavior checks are needed, hand the test question to the evaluation harness and keep the result as evidence for the test step.
-11. [agent][Y] If prior learning or playbook context is needed, search your knowledge notes for skill-authoring patterns before changing scope.
+11. [agent][Y] If prior learning or playbook context is needed, read the knowledge library's `INDEX.md` for skill-authoring patterns before changing scope.
 12. [agent][Y] If documentation quality is the blocker, route the document surface to a document review and return with findings.
 13. [agent][G] If the skill has personal customizations kept separately, note their path and keep personal context out of generic scaffold assumptions.
 14. [agent][G] If the skill belongs in a plugin or private namespace, name the namespace rule and hand it to the skill-authoring workflow rather than deciding here.
@@ -39,7 +39,7 @@ COUNTERPART: both directions live in this file; bridge below.
 3. [agent][R] If your setup runs hooks that observe outputs (documentation integrity, completion-claim checks), they are complements: this pack does not duplicate them.
 4. [agent][Y] A work contract supplies criteria only when the effort is large enough to justify one.
 5. [agent][Y] The evaluation harness supplies repeatable behavior checks when the test step needs a stronger harness.
-6. [agent][Y] Your knowledge notes supply prior skill-authoring patterns; retrieved material is context, not automatic scope.
+6. [agent][Y] The knowledge library (`_knowledge.md`) supplies prior skill-authoring patterns; retrieved material is context, not automatic scope.
 7. [agent][G] A document review supplies clarity review for planning or documentation surfaces.
 8. [agent][R] The Learning Router in `_catechism-base.md` is used only at close, for learning routing.
 
@@ -90,7 +90,7 @@ Base: [agent][R] Run installed path `~/.claude/skills/open/References/_catechism
 3. [agent][R] If your setup runs hooks that observe documentation changes or completion claims, they are complements: this pack does not duplicate them.
 4. [agent][R] This pack reports evidence before claiming close state.
 5. [agent][Y] The evaluation harness is optional evidence support when the test step needs repeatable behavioral coverage.
-6. [agent][Y] Your knowledge notes and the skill-authoring workflow's own test guidance can supply context before route-specific lessons are applied.
+6. [agent][Y] The knowledge library and the skill-authoring workflow's own test guidance can supply context before route-specific lessons are applied.
 7. [agent][Y] The Learning Router in `_catechism-base.md` is the only learning-routing table; it is never rebuilt here.
 8. [agent][G] Git commit proposals name exact files and skip unrelated changes.
 

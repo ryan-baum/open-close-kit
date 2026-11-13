@@ -97,7 +97,7 @@ Base: [agent][R] Run installed path `~/.claude/skills/open/References/_catechism
 5. [agent][Y] Close includes enough proof for a future brief opener to know what was done and what still needs evidence.
 6. [agent][Y] If an external mirror and the file bridge disagree, the file bridge wins for next open and the mirror is treated as derived.
 7. [agent][G] If the bridge points to a missing artifact, preserve the receipt summary and add a fresh source gap instead of erasing history.
-8. [agent][G] A useful bridge fits on one screen; archive-length receipts live beside the artifact or in your knowledge notes folder.
+8. [agent][G] A useful bridge fits on one screen; archive-length receipts live beside the artifact or in the knowledge library (`_knowledge.md`).
 
 ## GATES
 1. [agent][R] "Decision budget is stated per direction; menu navigation is excluded."

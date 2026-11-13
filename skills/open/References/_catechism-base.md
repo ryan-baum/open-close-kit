@@ -49,7 +49,7 @@ Route packs may add detail, but they keep this vocabulary exact.
 
 1. [agent][R] **Commits and provenance** -- Inspect uncommitted work in every repo this session wrote to. Present a scoped commit proposal as a DRY RUN: per repo, the exact FILES this session wrote (never a whole repo, never a directory when another session may be writing in it) and a one-line message. A proposal that lists a file you did not write means someone else is working there: drop it. Committing is a separately gated follow-up and never part of the zero-question default path; pushing is never part of a close. Verify that any logic ported from elsewhere says where it came from, and cite missing provenance as a finding. When the session itself got something wrong, report both the fix for this case and the change that would stop it happening again.
 
-2. [agent][R] **Memory routing sweep** -- Run the Learning Router (below) over the session or thing being closed. Sweep learnings, playbooks, skill Gotchas, knowledge notes, relationship notes, and project-registry state. Present a KEEP/SKIP inventory, not questions.
+2. [agent][R] **Memory routing sweep** -- Run the Learning Router (below) over the session or thing being closed. Sweep learnings, playbooks, skill Gotchas, the knowledge library (`_knowledge.md`), relationship notes, and project-registry state. Present a KEEP/SKIP inventory, not questions.
 
 3. [agent][Y] **Collaboration meta-insights (just-in-time routed)** -- Harvest process, prompting, sequencing, delegation, and review patterns worth reusing. Route each by WHERE IT WILL FIRE at the moment of use, not where it taxonomically belongs: memory that loads every session (for example `CLAUDE.md` or the auto-memory index) for cross-session collaboration patterns; knowledge playbooks for method patterns; skill Gotchas (they load when that skill fires) for tool-specific patterns; relationship notes for interpersonal calibration. Name the chosen surface per insight and WHY it will be found there at moment of use. Present concrete candidates and explicit skips.
 
@@ -61,8 +61,8 @@ Run this table exactly once per close, over candidate learnings. **The default i
 
 | type | what it is | destination (adapt the paths to your setup) |
 |---|---|---|
-| `knowledge` | a reusable method, finding or reference | your knowledge notes folder, for example `~/.claude/knowledge/<Topic>.md`, with a one-line summary at the top so search finds it |
-| `incident` | something that went wrong, with its cause | `~/.claude/knowledge/incidents/INC-YYYYMMDD-<slug>.md`; the narrative lives there ONLY, and any rule that came from it cites the id |
+| `knowledge` | a reusable method, finding, reference or playbook | the knowledge library (`_knowledge.md`): update the note that already covers it, or add `<Slug>.md` with its frontmatter, and write its `INDEX.md` line in the same close |
+| `incident` | something that went wrong, with its cause | the knowledge library's `incidents/INC-YYYYMMDD-<slug>.md`, with an `INDEX.md` line; the narrative lives there ONLY, and any rule that came from it cites the id |
 | `rule` | a standing instruction for every session | `CLAUDE.md` (global `~/.claude/CLAUDE.md`, or the project's own) |
 | `gotcha` | a trap specific to one skill or tool | that skill's `SKILL.md`, under `## Gotchas` |
 | `state` | where a project stands | your project registry (for example a `PROJECTS.md`), or the run's `CONTRACT.md` |
@@ -70,7 +70,9 @@ Run this table exactly once per close, over candidate learnings. **The default i
 | `vocab` | a term and its meaning | your definitions file (for example `DEFINITIONS.md`) |
 | `identity`, `doctrine`, `hook`, `permission` | anything that changes who the agent is, its standing doctrine, a hook, or a permission | **surface to the user as a proposal; never write it** |
 
-Report the run as a KEEP/SKIP inventory: each candidate, its type, KEEP (with the destination) or SKIP (with the reason).
+Before any `knowledge` or `incident` write, resolve the library folder and check its index for a note that already covers the learning (`_knowledge.md`, "update, don't duplicate"). If the library does not exist yet, create it as `_knowledge.md` says and report that.
+
+Report the run as a KEEP/SKIP inventory: each candidate, its type, KEEP (with the destination, and `new` or `updated` for library notes) or SKIP (with the reason).
 
 ## Output Shape
 

@@ -23,7 +23,7 @@ COUNTERPART: both directions live in this file; bridge below.
 6. [agent][R] Create or reconcile the project's work contract (`CONTRACT.md` in the project home: frontmatter `phase: open`; sections Goal, Criteria as `- [ ] C-1 ...`, Decisions, Changelog); minimum surface is `CONTRACT.md` plus whatever files already define the project.
 7. [agent][R] If you keep a registry, create or update the stub with project name, home path, parent goal, active status, and first next route offer.
 8. [agent][R] Link upward to the parent goal without re-deciding that goal; if the goal is unclear, record `goal: unresolved` and offer a goal check.
-9. [agent][Y] Search your knowledge notes for project-status and closeout patterns before adding new structure; use hits as context, not as requirements.
+9. [agent][Y] Read the knowledge library's `INDEX.md` for project-status and closeout patterns before adding new structure; use hits as context, not as requirements.
 10. [agent][Y] Recall prior work, matching directories, and git history; attach only high-signal findings to the contract.
 11. [agent][Y] Identify current milestones and true human-unblock handoffs; do not turn every agent step into a project task.
 12. [agent][Y] If the project is client-facing, research-oriented, or hobby-shaped, offer the matching route family instead of silently converting it.
@@ -39,7 +39,7 @@ COUNTERPART: both directions live in this file; bridge below.
 1. [agent][R] Router handles aliases `p` and `proj`, bare-menu placement, and deterministic clue gathering; this pack handles only project ceremony.
 2. [agent][R] The work contract owns scaffold, completeness check, and reconcile; the agent edits it directly and this pack carries ordering and gates.
 3. [agent][R] Recall recovers prior project surfaces. If your setup runs SessionStart hooks, they are complements: this pack does not duplicate them.
-4. [agent][Y] Your knowledge notes (if any) can supply project-status and seam playbooks when relevant.
+4. [agent][Y] The knowledge library (`_knowledge.md`) can supply project-status and seam playbooks when relevant.
 5. [agent][Y] Your goals file (for example `GOALS.md`), if you keep one, can show goal/project dependency state; treat it as advisory evidence.
 6. [agent][G] A document review of an unclear contract or plan surface is an optional delegate, not a mandatory ceremony step.
 7. [agent][G] `work.json` is optional. If you keep one and nothing syncs it from the contract, update it by hand; this pack does not create a second sync path.
@@ -64,8 +64,8 @@ COUNTERPART: both directions live in this file; bridge below.
 4. [USER-DECISION][R] Decision 1: choose status only when evidence allows multiple honest states; otherwise agent proposes status with skip reason.
 5. [agent][R] Run the installed catechism base plus project extensions below; agent performs the sweeps first and reports findings, proposals, and skips.
 6. [agent][R] Route learnings over project artifacts through the Learning Router in `_catechism-base.md`.
-7. [agent][R] Promote only high-reuse learnings toward playbook candidates; low-certainty reusable material goes to the drain handoff (a `Drained/` folder in your knowledge notes, or a queue note) for a later harvest.
-8. [agent][Y] When proposing a new curated playbook, use retrieval frontmatter: `title`, `slug`, `type: playbook`, `description`, and inline-array `tags` and `related` (a multi-line YAML list can be silently dropped by simple frontmatter parsers).
+7. [agent][R] Promote only high-reuse learnings toward playbook candidates; low-certainty reusable material goes to the drain handoff (the knowledge library's `Drained/` folder, or a queue note) for a later harvest.
+8. [agent][Y] When proposing a new curated playbook, write it in the knowledge library's note format (`_knowledge.md`): `type: playbook`, a one-line `description`, inline-array `tags` and `related` (a multi-line YAML list can be silently dropped by simple frontmatter parsers), and an `INDEX.md` line. Check the index first and extend an existing playbook rather than adding a second one.
 9. [agent][R] Surface saturation upward: if execution is blocked or capacity-bound, write that signal to the parent-goal handoff instead of stacking more child work.
 10. [agent][Y] Goals check: compare project outcome to the parent goal in your goals file (for example `GOALS.md`), if you keep one; propose any goal edit as a gated file edit, and let the file note lead until the user approves.
 11. [agent][Y] Next-projects-informed: identify successor, dependency, or follow-on project candidates and record them as offers in the bridge and the registry.
@@ -88,7 +88,7 @@ Base: [agent][R] Run installed path `~/.claude/skills/open/References/_catechism
 <!-- route-catechism-extension:start -->
 1. [agent][R] **Goals check** -- Compare project evidence to the parent goal and propose any goals-file update as a gated edit.
 2. [agent][R] **Next projects informed** -- Produce successor, dependency, and follow-on project offers; record skips when no useful successor exists.
-3. [agent][R] **Metabolic drain** -- Identify reusable outputs for the drain handoff, a `Drained/` folder in your knowledge notes, or a curated playbook proposal; a later harvest owns machine drain.
+3. [agent][R] **Metabolic drain** -- Identify reusable outputs for the drain handoff, the knowledge library's `Drained/` folder, or a curated playbook proposal; a later harvest owns machine drain.
 4. [agent][Y] **Findable playbooks** -- Ensure any new playbook proposal uses inline-array `tags` and `related` frontmatter before it enters your playbooks folder.
 5. [agent][Y] **Saturation upward** -- Surface blocked or capacity-bound state to the parent goal handoff with evidence and one offered adjustment.
 6. [agent][Y] **Independent blindspot audit (optional)** -- The second lens on base item 4. Have a reviewer with a different model lineage (or, failing that, a fresh subagent with no access to this conversation) audit close-CLAIM integrity: does every "done/delivered" claim match evidence in the contract/artifacts/git, are all open decisions and loops surfaced, is any completion resting on a single self-report, is the rollback real. Hand it the draft close report (if one exists) and keep a short slug for the run plus any run id the reviewer returns for the final bridge Write. Fold or refute each finding with evidence BEFORE the close is recorded; state the verdict (pass/concerns/fail) in the close output. The audit is read-only. If no independent reviewer is available, or it errors, record `skipped` and say so: independent coverage was NOT obtained.
@@ -98,7 +98,7 @@ Base: [agent][R] Run installed path `~/.claude/skills/open/References/_catechism
 1. [agent][R] The work contract carries the criteria; the agent runs the final criteria and reconcile checks and this pack reports findings and commit proposals.
 2. [agent][R] The Learning Router in `_catechism-base.md` handles learning destinations.
 3. [agent][R] A later harvest (yours, if you run one) owns drain, queue movement, and relevance recomputation; this pack writes only handoff notes and status.
-4. [agent][Y] Search your knowledge notes for prior closeout patterns before the catechism; apply retrieved playbooks only when evidence matches.
+4. [agent][Y] Read the knowledge library's `INDEX.md` for prior closeout patterns before the catechism; apply retrieved playbooks only when evidence matches.
 5. [agent][Y] If your setup runs SessionEnd hooks, they are complements: this pack does not duplicate them. This pack handles deliberate project closeout.
 6. [agent][G] A root-cause analysis and an executive summary are optional high-signal delegates, not default steps.
 7. [agent][R] Git commit behavior follows explicit staging and the three close trailers; no silent broad staging.

@@ -23,7 +23,7 @@ COUNTERPART: both directions live in this file; bridge below.
 7. [agent][Y] If recall finds a likely project, client, milestone, research, brief, skill, or experiment route, offer that route as a handoff instead of silently switching.
 8. [agent][Y] If a prior close left open loops, surface them as context with one offered next move, not as obligations.
 9. [agent][Y] If the active run already has a work-contract phase, keep the phase unchanged during open and leave completion semantics to close.
-10. [agent][G] If useful, search your knowledge notes for scoped playbook or learning recall, then attach only high-signal hits to the conversation context.
+10. [agent][Y] Read the knowledge library's `INDEX.md` (`_knowledge.md`) and attach only the notes whose line matches this conversation's topic; open a note's full text only on a match. No match is normal.
 11. [agent][G] If the topic is client-facing, research-heavy, or executive-summary shaped, name the relevant method and keep the current route as the front door.
 12. [agent][G] Write a tiny refreshed bridge only when the open changes the intent or active run pointer; otherwise leave the existing bridge untouched.
 13. [agent][R] Close with: "You are set up. NMIT: <the next most important thing from this open>."
@@ -32,7 +32,7 @@ COUNTERPART: both directions live in this file; bridge below.
 1. [agent][R] The router handles aliases `conv` and `chat`, bare-menu placement, and deterministic context clues; this pack handles only conversation ceremony.
 2. [agent][R] Recall is the only default open delegate: it recovers prior sessions, run folders, work-contract titles, and git history.
 3. [agent][R] If your setup runs SessionStart hooks, they are complements: this pack does not duplicate them, and it does not become a second startup ritual.
-4. [agent][Y] Searching your knowledge notes is optional scoped recall; it is not part of the minimal open path.
+4. [agent][Y] Reading the knowledge library's index is a `[Y]` step: it is skipped at `[R]`, and a match is context, never a requirement.
 5. [agent][G] No commit, external write, or work-contract change is required for open.
 
 ## CLOSE
@@ -60,7 +60,7 @@ COUNTERPART: both directions live in this file; bridge below.
 10. [agent][R] Run the blind-spot sweep: dangling references, unsupported claims, open loops without a home, and active commitments lacking a bridge.
 11. [agent][R] Write `${OPEN_CLOSE_STATE_DIR:-~/.claude/open-close}/conversation-next.md` with active intent, open loops, next useful prompt, routed memory summary, and active-run state (see GOTCHAS 7 and 8 before writing).
 12. [agent][Y] Prepare collaboration meta-insights for relationship memory, playbooks, or skill Gotchas when evidence supports reuse.
-13. [agent][Y] Promote playbook candidates only with a one-line summary that search will find; otherwise route to lower-ceremony knowledge or skip.
+13. [agent][Y] Promote playbook candidates into the knowledge library (`type: playbook`, with an index line whose description search will find); otherwise route to lower-ceremony knowledge or skip.
 14. [agent][Y] If the conversation included client or deal intelligence, offer a deal recap or voice-of-customer note as a follow-up proposal, not a default action.
 15. [agent][G] If the conversation produced a handoff-grade summary, offer an executive summary and keep the catechism report concise.
 16. [agent][G] If a recurring skill failure appears, prepare a Gotcha candidate for the relevant skill with source evidence.

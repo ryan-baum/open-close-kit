@@ -17,7 +17,7 @@ COUNTERPART: both directions live in this file; bridge below.
 ### Steps
 1. [agent][R] Read `${OPEN_CLOSE_STATE_DIR:-~/.claude/open-close}/milestone-next.md` if present, then hydrate only parent hint, prior criteria state, and next physical move.
 2. [agent][R] Detect zoom from current path: inside an existing milestone or task surface means "use context, still create a new flat milestone under the work root unless the user selects another route."
-3. [agent][R] If you keep a classifier note for choosing folder and milestone altitude (search your knowledge notes), apply it; if it clearly points away from `milestone`, surface the closest route and return without creating a workdir.
+3. [agent][R] If you keep a classifier note for choosing folder and milestone altitude (search the knowledge library's `INDEX.md`), apply it; if it clearly points away from `milestone`, surface the closest route and return without creating a workdir.
 4. [USER-DECISION][R] If creation input is missing, ask one combined question: project key plus milestone title; direct args consume no decision.
 5. [agent][R] Slugify title and project key: lowercase, whitespace to hyphen, strip characters outside `a-z`, `0-9`, and hyphen, compress repeated hyphens, trim edge hyphens.
 6. [agent][R] Build directory name as `YYYYMMDD-HHMMSS_PROJECT--kebab-slug`; example `20260708-141530_open-close--milestone-pack`.
@@ -34,7 +34,7 @@ COUNTERPART: both directions live in this file; bridge below.
 ### Wiring
 1. [agent][R] Router handles aliases `m` and `ms`, bare-menu placement, and deterministic context clues; this pack handles only milestone ceremony.
 2. [agent][R] The work contract owns scaffold, completeness check, and reconcile; the agent edits it directly and the pack carries ordering and gates.
-3. [agent][R] Your knowledge notes (if you keep any) hold the folder and milestone classifier and relevant playbooks; the classifier table is not reconstructed here.
+3. [agent][R] The knowledge library (`_knowledge.md`) can hold the folder and milestone classifier and relevant playbooks; the classifier table is not reconstructed here.
 4. [agent][Y] Recall (transcripts, run folders, contract titles, `git log`) recovers prior work. If your setup runs SessionStart hooks, they are complements: this pack does not duplicate them.
 5. [agent][G] `work.json` is optional (absent means "no active run"). If you keep one and no hook syncs it, update it by hand from the contract's frontmatter and criteria.
 6. [agent][G] Git open commit is a proposal, not a hidden side effect; explicit staging keeps scope visible.
@@ -83,7 +83,7 @@ Base: [agent][R] Run installed path `~/.claude/skills/open/References/_catechism
 ### Wiring
 1. [agent][R] The work contract carries the criteria; the agent runs the completeness and reconcile checks and this pack reports findings and commit proposals.
 2. [agent][R] The Learning Router in `_catechism-base.md` handles learning destinations.
-3. [agent][R] Search your knowledge notes for prior closeout patterns before the catechism; apply only relevant patterns.
+3. [agent][R] Read the knowledge library's `INDEX.md` for prior closeout patterns before the catechism; apply only relevant patterns.
 4. [agent][Y] Any scheduled job that harvests routed notes runs later; close does not run a separate promotion chain.
 5. [agent][Y] If your setup runs SessionEnd hooks, they are complements: this pack does not duplicate them. This pack handles deliberate close decisions only, and still presents its own scoped commit preview.
 6. [agent][G] Git commit behavior follows explicit staging and the three close trailers; no silent `git add .`.

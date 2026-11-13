@@ -20,7 +20,7 @@ COUNTERPART: both directions live in this file; bridge below.
 4. [agent][R] Detect first-open versus subsequent-open by checking whether the org+people+project set is already represented; first open stages the whole set, subsequent open stages project-only hydration.
 5. [agent][R] On first open, assemble the minimum client packet: org name, known people, active project, current commercial state, relevant source links, and next relationship motion.
 6. [agent][R] On subsequent open, assemble the project packet only: client project, current delivery state, latest recap/proposal/VOC artifact, and next physical move.
-7. [agent][Y] Search your knowledge notes (scoped) for prior client close mining and client playbooks; attach only high-signal hits to the open packet.
+7. [agent][Y] Read the knowledge library's `INDEX.md` for prior client close mining and client playbooks; attach only high-signal hits to the open packet.
 8. [agent][Y] If meeting-recording artifacts exist, prepare a source list for a deal recap (what changed in the deal, verbatim quotes, open questions); include title/date/source path and skip transcript expansion until the recap needs it.
 9. [agent][Y] If proposal or statement-of-work context exists, prepare a compact handoff for your proposal workflow with agreement state, deliverables, timeline, and constraints.
 10. [USER-DECISION][Y] Decision 2: when commercial state is unclear, choose the next available track: recap, proposal, delivery, Voice of Customer (VOC), or closeout prep.
@@ -38,7 +38,7 @@ COUNTERPART: both directions live in this file; bridge below.
 4. [agent][R] Your proposal workflow owns proposal and statement-of-work build or review once agreement quality is ready.
 5. [agent][Y] Voice-of-customer mining owns customer-language extraction; this pack points to sources and records selected destinations.
 6. [agent][Y] A meeting recorder (whichever you use) is treated as a source surface for transcripts and meetings; this pack does not claim a direct integration with it.
-7. [agent][Y] Your knowledge notes support prior-pattern retrieval and later routing; this pack carries ceremony and controls.
+7. [agent][Y] The knowledge library (`_knowledge.md`) supports prior-pattern retrieval and later routing; this pack carries ceremony and controls.
 8. [agent][G] If your setup runs SessionStart hooks, they are complements: this pack does not duplicate them.
 
 ## CLOSE

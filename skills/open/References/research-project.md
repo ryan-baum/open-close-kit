@@ -19,7 +19,7 @@ COUNTERPART: both directions live in this file; bridge below.
 ### Steps
 1. [agent][R] Hydrate the bridge first: project root, prior scan status, top open question, source manifest path, next physical move, and evidence gaps.
 2. [agent][R] Classify the object as an interrogated body of work, not a read-mostly source; if this fails, offer the nearest route and stop before graph planning.
-3. [agent][R] Search visible files, recall (search recent session transcripts, run folders, contract titles and `git log`), and your knowledge notes for prior research, prior art, source lists, and existing synthesis; return a short manifest instead of a broad prose summary.
+3. [agent][R] Search visible files, recall (search recent session transcripts, run folders, contract titles and `git log`), and the knowledge library's `INDEX.md` for prior research, prior art, source lists, and existing synthesis; return a short manifest instead of a broad prose summary.
 4. [agent][R] Detect duplicate project roots by title, aliases, local paths, and existing graph files in other run folders; mark root selection as blocking before any cross-linking or merging.
 5. [USER-DECISION][R] If the canonical root or lead question is ambiguous, offer up to three choices: use current root, pick an existing root, or start file-first with a fresh `ARGUMENT-GRAPH.md` in a new run folder.
 6. [agent][R] Build the sequential strategy: first query, source batch, evidence standard, stop condition, and the next review point.
